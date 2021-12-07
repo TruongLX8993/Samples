@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Delegate
+﻿namespace Delegate
 {
     public class Topic
     {
