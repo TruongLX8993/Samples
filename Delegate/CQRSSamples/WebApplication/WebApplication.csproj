@@ -16,4 +16,8 @@
       <PackageReference Include="System.Data.SQLite" Version="1.0.115.5" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Infrastructures\ExceptionHandlers" />
+    </ItemGroup>
+
 </Project>

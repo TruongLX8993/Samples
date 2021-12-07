@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using WebApplication.Application.Exceptions;
@@ -20,12 +21,10 @@ namespace WebApplication.Application.Behaviors
         {
             var validator = _requestValidatorFactory.GetRequestValidator<TRequest>();
             var validResult = await validator.ValidateAsync(request, cancellationToken);
-            if (!validResult.IsValid)
-            {
-                throw new RequestInvalidException("");
-            }
-
-            return await next();
+            if (validResult.IsValid) return await next();
+            var msg = validResult.Errors.Select(e => e.ErrorMessage)
+                .ToList();
+            throw new RequestInvalidException(string.Join(",", msg));
         }
     }
 }
