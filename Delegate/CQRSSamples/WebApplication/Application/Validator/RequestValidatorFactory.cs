@@ -29,7 +29,7 @@ namespace WebApplication.Application.Validator
     {
         public static void AddValidatorFactory(this IServiceCollection serviceCollection, Assembly assembly)
         {
-            serviceCollection.AddSingleton<RequestValidatorFactory>(new RequestValidatorFactory(assembly));
+            serviceCollection.AddSingleton(new RequestValidatorFactory(assembly));
         }
     }
 }

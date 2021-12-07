@@ -1,13 +1,12 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using WebApplication.Application.Commands;
 
-namespace WebApplication.Apis.Controllers
+namespace WebApplication.Infrastructures.Apis.Controllers
 {
     [Route("/api/student")]
-    public class StudentController : ControllerBase
+    public class StudentController : BaseApiController
     {
         private readonly IMediator _mediator;
 
@@ -20,7 +19,7 @@ namespace WebApplication.Apis.Controllers
         public async Task<IActionResult> Create(CreateStudentCommand command)
         {
             var res = await _mediator.Send(command);
-            return Ok();
+            return SendResult(res);
         }
     }
 }

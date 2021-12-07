@@ -6,7 +6,7 @@ using WebApplication.Application.Validator;
 
 namespace WebApplication.Application.Behaviors
 {
-    public class ValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRequest>
+    public class ValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
         private readonly RequestValidatorFactory _requestValidatorFactory;
 
@@ -15,10 +15,8 @@ namespace WebApplication.Application.Behaviors
             _requestValidatorFactory = requestValidatorFactory;
         }
 
-        public async Task<TRequest> Handle(
-            TRequest request,
-            CancellationToken cancellationToken,
-            RequestHandlerDelegate<TRequest> next)
+        public async Task<TResponse> Handle(
+            TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
             var validator = _requestValidatorFactory.GetRequestValidator<TRequest>();
             var validResult = await validator.ValidateAsync(request, cancellationToken);

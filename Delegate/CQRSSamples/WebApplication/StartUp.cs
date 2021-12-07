@@ -13,6 +13,7 @@ using WebApplication.Application.Behaviors;
 using WebApplication.Application.Interfaces;
 using WebApplication.Application.Validator;
 using WebApplication.Infrastructures;
+using WebApplication.Infrastructures.Data;
 using WebApplication.Infrastructures.Data.NhibernateRepository;
 using WebApplication.Infrastructures.Data.Read;
 
@@ -29,9 +30,9 @@ namespace WebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddValidatorFactory(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidatorBehavior<,>));
-            services.AddValidatorFactory(Assembly.GetExecutingAssembly());
             services.AddDataLayerService(DbConnection);
         }
 

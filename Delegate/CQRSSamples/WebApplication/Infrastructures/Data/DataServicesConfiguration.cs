@@ -4,9 +4,9 @@ using WebApplication.Application.Repositories;
 using WebApplication.Infrastructures.Data.NhibernateRepository;
 using WebApplication.Infrastructures.Data.Read;
 
-namespace WebApplication.Infrastructures
+namespace WebApplication.Infrastructures.Data
 {
-    public static class NhibernateConfiguration
+    public static class DataServicesConfiguration
     {
         public static void AddDataLayerService(
             this IServiceCollection services,
